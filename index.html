@@ -1,0 +1,790 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+     
+    <title> MY Portfolio</title>
+    <style>
+     /* General Resets & Variables */
+:root {
+    --primary-color: #007bff; /* Blue */
+    --secondary-color: #6c757d; /* Grey */
+    --accent-color: #28a745; /* Green */
+    --dark-bg: #212529; /* Dark Grey */
+    --light-bg: #f8f9fa; /* Light Grey */
+    --text-color: #343a40; /* Darker Text */
+    --light-text-color: #ffffff; /* White Text */
+    --border-color: #dee2e6; /* Light Border */
+    --font-family: 'Poppins', sans-serif;
+    --transition-speed: 0.3s ease;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-bg);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--dark-bg);
+}
+
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.8rem; }
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+.highlight {
+    color: var(--primary-color);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    text-align: center;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    border: 2px solid var(--primary-color);
+    margin-right: 10px;
+}
+
+.primary-btn:hover {
+    background-color: #0056b3; /* Darker blue */
+    border-color: #0056b3;
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.secondary-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}
+
+.small-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+}
+
+/* Header */
+.header {
+    background-color: var(--dark-bg);
+    color: var(--light-text-color);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--light-text-color);
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+}
+
+.nav-item {
+    margin-left: 25px;
+}
+
+.nav-link {
+    color: var(--light-text-color);
+    font-weight: 400;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width var(--transition-speed);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-toggle {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    position: relative;
+    z-index: 1001; /* Ensure it's above other elements */
+}
+
+.hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--light-text-color);
+    position: relative;
+    transition: background-color var(--transition-speed);
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: var(--light-text-color);
+    transition: transform var(--transition-speed), top var(--transition-speed);
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    top: 8px;
+}
+
+/* Mobile Nav Toggle Active State */
+.nav-toggle.active .hamburger {
+    background-color: transparent;
+}
+
+.nav-toggle.active .hamburger::before {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle.active .hamburger::after {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* Hero Section */
+.hero {
+    background-color: var(--light-bg);
+    padding: 100px 0;
+    text-align: center;
+    min-height: calc(100vh - 80px); /* Adjust based on header height */
+    display: flex;
+    align-items: center;
+}
+
+.hero .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+
+.hero-content {
+    flex: 1;
+    min-width: 300px;
+    margin-right: 20px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.hero-content .tagline {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin-bottom: 30px;
+    color: var(--secondary-color);
+}
+
+.hero-image {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+    margin-left: 20px;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%; /* Circular image */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+
+/* General Section Styles */
+section {
+    padding: 80px 0;
+    background-color: var(--light-bg);
+}
+
+section:nth-of-type(even) { /* Alternate background for sections */
+    background-color: #e9ecef; /* Lighter grey */
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+/* About Section */
+.about-section p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 1.5rem auto;
+    text-align: center;
+}
+
+/* Skills Section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.skill-card {
+    background-color: var(--light-text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform var(--transition-speed);
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.skill-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.skill-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.skill-card ul li {
+    background-color: var(--light-bg);
+    padding: 8px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+}
+.skill-card ul li::before {
+    content: '✅'; /* Checkmark icon */
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+
+/* Projects Section */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.project-card {
+    background-color: var(--light-text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform var(--transition-speed);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover;
+    display: block;
+}
+
+.project-card h3 {
+    margin: 20px 20px 10px;
+    color: var(--dark-bg);
+}
+
+.project-card p {
+    font-size: 0.95rem;
+    margin: 0 20px 20px;
+    color: var(--secondary-color);
+}
+
+.project-links {
+    margin: 0 20px 20px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Contact Section */
+.contact-section p {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--light-text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px 25px;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: all var(--transition-speed);
+}
+
+.contact-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    border-color: var(--primary-color);
+}
+
+.contact-item .icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    /* For FontAwesome: */
+    /* font-family: "Font Awesome 5 Free"; */
+    /* font-weight: 900; */
+}
+
+/* Specific contact item icon colors/hover */
+.contact-item.email .icon { color: #d44638; } /* Gmail red */
+.contact-item.linkedin .icon { color: #0077B5; } /* LinkedIn blue */
+.contact-item.github .icon { color: #333; } /* GitHub dark */
+.contact-item.youtube .icon { color: #FF0000; } /* YouTube red */
+.contact-item.phone .icon { color: #28a745; } /* Green */
+
+.contact-item:hover .icon {
+    color: var(--light-text-color); /* Icons turn white on hover */
+}
+
+
+/* Footer */
+.footer {
+    background-color: var(--dark-bg);
+    color: var(--light-text-color);
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 0.9rem;
+    margin-top: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .hero .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-content {
+        margin-right: 0;
+        margin-bottom: 40px;
+    }
+    .hero-image {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    .hero-content h1 { font-size: 2.8rem; }
+    .hero-content .tagline { font-size: 1.2rem; }
+
+    /* Mobile Navigation */
+    .nav-menu {
+        position: relative;
+    }
+    .nav-toggle {
+        display: block; /* Show hamburger on mobile */
+        margin-left: auto; /* Push to right */
+    }
+
+    .nav-list {
+        display: none; /* Hide nav list by default */
+        flex-direction: column;
+        background-color: var(--dark-bg);
+        position: absolute;
+        top: 100%; /* Below the header */
+        right: 0;
+        width: 100%;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        padding: 20px 0;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .nav-list.active {
+        display: flex; /* Show when active */
+    }
+
+    .nav-item {
+        margin: 0;
+        text-align: center;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 15px 20px;
+        color: var(--light-text-color);
+    }
+    .nav-link:hover {
+        background-color: rgba(255,255,255,0.1);
+    }
+    .nav-link::after { /* Remove underline animation for mobile links for simplicity */
+        display: none;
+    }
+
+    .contact-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero {
+        padding: 80px 0 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.8rem; }
+    .hero-content h1 { font-size: 2.2rem; }
+    .hero-content .tagline { font-size: 1rem; }
+    .btn {
+        width: 100%;
+        margin: 10px 0 !important;
+    }
+    .hero-image img {
+        width: 80%; /* Smaller image on very small screens */
+    }
+    .skills-grid, .project-grid {
+        grid-template-columns: 1fr; /* Single column layout for very small screens */
+    }
+}
+
+    </style>
+    <!-- Link to your main CSS file -->
+    <link rel="stylesheet" href=" code.css">
+    <!-- Optional: Google Fonts for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">Mulugeta Muse</a>
+            <nav class="nav-menu">
+                <button class="nav-toggle" aria-label="toggle navigation">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                    <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hello, I'm <span class="highlight">Mulugeta Muse</span></h1>
+                <p class="tagline">Am IT Student | Web Developer | Academic Content Creator</p>
+                <p>Passionate about technology, problem-solving, and sharing knowledge. 
+                   Welcome to my portfolio!</p>
+                <a href="#projects" class="btn primary-btn">View My Work</a>
+                <a href="#contact" class="btn secondary-btn">Get In Touch</a>
+            </div>
+            <div class="hero-image">
+                <img src=" photo_2025-12-11_10-55-43.jpg"width="300"height="320">
+            </div>
+        </div>
+    </section>
+     <section id="about" class="about-section">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>
+                <!-- This is where you'll put your detailed 'About Me' description. -->
+                                <!-- Use one of the bios we crafted earlier! -->
+                I am a 3rd-year IT student at Wachamo University, driven by 
+                a passion for creating impactful software solutions and sharing knowledge. 
+                My journey involves delving into complex IT concepts like Java
+                 multithreading and project management,
+                 alongside developing practical applications.
+                 I'm also an active academic content creator on YouTube, 
+                 where I simplify technical subjects for a wider audience.
+            </p>
+            <p>
+                My skills span frontend development (HTML, CSS,
+                 JavaScript), foundational Java programming, project planning,
+                  and educational content creation. I'm currently focused on building 
+                  robust web applications, enhancing my technical expertise,
+                 and contributing to meaningful projects like theEthioBook" online bookstore.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <h2>My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Programming & Development</h3>
+                    <ul>
+                        <li>Java (Multithreading, Sockets)</li>
+                        <li>HTML5, CSS3, JavaScript (Vanilla JS)</li>
+                        <li>Basic SQL (Database Concepts)</li>
+                        <li>Version Control (Git, GitHub)</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Project Management & Tools</h3>
+                    <ul>
+                        <li>Project Planning (WBS, Scrum/Agile basics)</li>
+                        <li>Problem Solving & Debugging</li>
+                        <li>MS Office Suite</li>
+                        <li>Lucidchart, Draw.io (WBS visualization)</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Content Creation & Other</h3>
+                    <ul>
+                        <li>Academic YouTube Content Creation</li>
+                        <li>Video Editing</li>
+                        <li>Public Speaking & Presentation</li>
+                        <li>Financial Accounting Concepts</li>
+                    </ul>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <h2>My Projects</h2>
+            <div class="project-grid">
+                <!-- Project Card 1: EthioBook -->
+                <div class="project-card">
+                    <img src="images12.jpg" alt="EthioBook Project">
+                    <h3>EthioBook Online Bookstore</h3>
+                    <p>A comprehensive online platform for buying and selling books,
+                     designed with a focus on user experience and robust backend functionality.
+                      (Currently in planning/development phase).</p>
+                    <div class="project-links">
+                        <a href="https://github.com/mulemuse16/onlonebookstore" target="_blank" 
+                        class="btn small-btn">GitHub Repo</a>
+                        <!-- <a href="#" target="_blank" class="btn small-btn">Live Demo</a> -->
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Java Multithreading Examples -->
+        <div class="project-card">
+            <img src=" download123.jpg" alt="Java Multithreading Project">
+            <h3>Java Multithreading & Concurrency Demos</h3>
+             <p>A collection of Java code examples demonstrating core multithreading concepts 
+            like thread creat
+            ion, synchronization, ExecutorServices, and CompletableFutures.</p>
+            <div class="project-links">
+             <a href="https://github.com/yourusername/java-multithreading-demos" 
+            target="_blank" class="btn small-btn">GitHub Repo</a>
+          </div>
+        </div>
+
+                <!-- Project Card 3: Your YouTube Channel -->
+                <div class="project-card">
+                    <img src=" photo_2025-12-11_11-47-42.jpg" alt="YouTube Channel">
+                    <h3>Academic Content Creation (YouTube)</h3>
+                    <p>My YouTube channel featuring tutorials and explanations 
+                    on various academic and IT topics, aiming to simplify complex concepts for students.</p>
+                    <div class="project-links">
+                        <a href=" https://www.youtube.com/channel/UCxZh837FRmKJgY0t_ueiEjg" target="_blank" 
+                        class="btn small-btn">
+                    Visit Channel</a>
+                    </div>
+                </div>
+
+                 
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p>I'm open to new opportunities, collaborations, 
+            or just a chat. Feel free to reach out!</p>
+            <div class="contact-links">
+                <a href=" mulemuse400@gmail.com" class="contact-item email" 
+                aria-label="Email Mulugeta">
+                    <span class="icon">&#9993;</span>  mulemuse400@gmail.com
+                </a>
+                 
+                <a href="https://github.com/mulemuse16/onlonebookstore" target="_blank" class="contact-item github" aria-label="Mulugeta's GitHub Profile">
+                    <span class="icon">&#xf09b;</span> GitHub
+                </a>
+                <a href=" https://www.youtube.com/channel/UCxZh837FRmKJgY0t_ueiEjg" target="_blank" class="contact-item youtube" aria-label="Mulugeta's YouTube Channel">
+                    <!--<span class="icon">&#xf167;</span> YouTube Channel-->
+                    <span class="icon">▶️</span> YouTube Channel
+                </a>
+                <a href="tel:+25900679695" class="contact-item phone" aria-label="Call Mulugeta">
+                   <span class="icon">📞</span> +251 900679695
+    </a>
+               <!-- <a href=" https://t.me/fggjkddds" target="_blank" class="contact-item telegram" aria-label="Mulugeta's Telegram Profile">
+           <span class="icon">&#xf2c6;</span> mule09261-->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Mulugeta Muse. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Link to your main JavaScript file -->
+    <script>document.addEventListener('DOMContentLoaded', () => {
+    // Mobile navigation toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navList = document.querySelector('.nav-list');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (navToggle && navList) {
+        navToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+            navToggle.classList.toggle('active'); // Toggle hamburger animation
+        });
+
+        // Close nav when a link is clicked (for single-page navigation)
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navList.classList.contains('active')) {
+                    navList.classList.remove('active');
+                    navToggle.classList.remove('active');
+                }
+            });
+        });
+    }
+
+    // Optional: Highlight active navigation link based on scroll position
+    // This is a more advanced feature, leaving it simple for now.
+    // For a basic one-page site, clicking links already scrolls.
+    // You could add IntersectionObserver API here for more dynamic highlighting.
+});
+  </script>
+    <!-- FontAwesome for icons. Replace with your preferred icon library or use custom SVGs/emoji. -->
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit-id.js" crossorigin="anonymous" defer></script>
+</body>
+</html>
